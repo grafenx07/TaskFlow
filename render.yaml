@@ -1,0 +1,22 @@
+services:
+  - type: web
+    name: taskflow-api
+    runtime: node
+    rootDir: server
+    buildCommand: npm install
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: MONGODB_URI
+        sync: false          # set manually in Render dashboard
+      - key: JWT_SECRET
+        sync: false          # set manually in Render dashboard
+      - key: JWT_EXPIRE
+        value: 1h
+      - key: ALLOWED_ORIGINS
+        sync: false          # set to your Vercel URL, e.g. https://taskflow.vercel.app
+      - key: MAX_FILE_SIZE
+        value: "5242880"
+      - key: ALLOWED_FILE_TYPES
+        value: csv,xlsx,xls

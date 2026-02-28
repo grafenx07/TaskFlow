@@ -1,8 +1,14 @@
 import axios from 'axios';
 
+// In production VITE_API_URL points to the Render backend (e.g. https://taskflow-api.onrender.com)
+// In development the Vite proxy forwards /api → localhost:5000
+const baseURL = import.meta.env.VITE_API_URL
+  ? `${import.meta.env.VITE_API_URL}/api`
+  : '/api';
+
 // Create axios instance
 const api = axios.create({
-  baseURL: '/api',
+  baseURL,
   headers: {
     'Content-Type': 'application/json'
   }
